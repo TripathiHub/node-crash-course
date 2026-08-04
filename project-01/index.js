@@ -1,9 +1,9 @@
 const express = require("express");
 const users = require("./MOCK_DATA.json");
 const fs = require("fs");
-const { error } = require("console");
 const app = express();
 app.use(express.urlencoded({ extended: false }));
+
 app.use((req,res,next)=>{
   const log = `\n${Date.now()} : ${req.url} : ${req.method} : ${req.ip}`;
   fs.appendFile("./log.txt",log,(err,data)=>{
@@ -28,7 +28,7 @@ app.get("/users", (req, res) => {
 app.post("/api/users", (req, res) => {
   const body = req.body;
   if(!body || !body.email || !body.job_title){
-    return res.status(402).send({ error : "Fill required data"});
+    return res.status(400).send({ error : "Fill required data"});
   }
   users.push({ ...body, id: users.length + 1 });
   fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
@@ -41,7 +41,7 @@ app
     const id = Number(req.params.id);
     const user = users.find((user) => user.id === id);
     if(!user){
-      res.status(404).send({ error : "User not found"})
+       return res.status(404).send({ error : "User not found"})
     }
     return res.json(user);
   })
