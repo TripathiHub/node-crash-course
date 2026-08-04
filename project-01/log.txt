@@ -1,0 +1,12 @@
+
+1785647252558 : /api/users : POST : ::1
+1785647259836 : /api/users : POST : ::1
+1785647265188 : /api/users : POST : ::1
+1785647268923 : /users : GET : ::1
+1785647289030 : /api/users/1007 : GET : ::1
+1785647366672 : /api/users : POST : ::1
+1785647375517 : /api/users/1009 : GET : ::1
+1785647485046 : /api/users : POST : ::1
+1785647494106 : /api/users/1010 : GET : ::1
+1785818181232 : /users/2000 : GET : ::1
+1785818359491 : /api/users : POST : ::1
