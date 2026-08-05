@@ -34,3 +34,6 @@
 1785906814006 : /users : GET : ::1
 1785906814159 : /favicon.ico : GET : ::1
 1785906826843 : /api/users : GET : ::1
+1785911100138 : /api/users : POST : ::1
+1785911251336 : /api/users : POST : ::1
+1785911270030 : /api/users : GET : ::1
