@@ -37,3 +37,5 @@
 1785911100138 : /api/users : POST : ::1
 1785911251336 : /api/users : POST : ::1
 1785911270030 : /api/users : GET : ::1
+1785944311207 : /api/users : POST : ::1
+1785944319386 : /api/users : GET : ::1
