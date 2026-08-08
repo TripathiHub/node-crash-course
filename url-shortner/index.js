@@ -1,0 +1,10 @@
+const express = require("express");
+const app = express();
+const urlRoute = require("./routes/url");
+const { connectMongoDb } = require("./connection");
+const PORT = 8001;
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+connectMongoDb("mongodb://127.0.0.1:27017/url-shortner");
+app.use("/url", urlRoute);
+app.listen(PORT, () => console.log("server started at : ", PORT));
