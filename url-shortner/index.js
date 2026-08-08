@@ -4,7 +4,7 @@ const urlRoute = require("./routes/url");
 const { connectMongoDb } = require("./connection");
 const PORT = 8001;
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 connectMongoDb("mongodb://127.0.0.1:27017/url-shortner");
 app.use("/url", urlRoute);
+app.use("/:shortId",urlRoute);
 app.listen(PORT, () => console.log("server started at : ", PORT));
