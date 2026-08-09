@@ -7,4 +7,5 @@ app.use(express.json());
 connectMongoDb("mongodb://127.0.0.1:27017/url-shortner");
 app.use("/url", urlRoute);
 app.use("/:shortId",urlRoute);
+app.use("/url",urlRoute);
 app.listen(PORT, () => console.log("server started at : ", PORT));
