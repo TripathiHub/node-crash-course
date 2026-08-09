@@ -1,9 +1,7 @@
 const {handleGenerateShortUrl,handleRedirectUrl,handleUrlAnalysis} = require("../controllers/url");
 const express  = require("express");
 const router = express.Router();
-router
-.route("/")
-.post(handleGenerateShortUrl)
-.get(handleRedirectUrl);
-router.get("/analysis",handleUrlAnalysis);
+router.post("/url", handleGenerateShortUrl);
+router.get("/url/analysis", handleUrlAnalysis);
+router.get("/:shortId", handleRedirectUrl);
 module.exports = router;
