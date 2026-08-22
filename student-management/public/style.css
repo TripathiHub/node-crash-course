@@ -1,0 +1,190 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    color: #222;
+}
+
+/* Login */
+
+.login-container {
+    width: 400px;
+    margin: 100px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background: #1d4ed8;
+}
+
+#loginMessage {
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* Dashboard */
+
+.dashboard {
+    width: 95%;
+    max-width: 1400px;
+    margin: 30px auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 28px;
+}
+
+#logoutBtn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 5px;
+    background: #dc2626;
+    color: white;
+    cursor: pointer;
+}
+
+#logoutBtn:hover {
+    background: #b91c1c;
+}
+
+.content {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+}
+
+.content h2 {
+    margin-bottom: 20px;
+}
+
+#addStudentBtn {
+    padding: 10px 18px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background: #16a34a;
+    color: white;
+    cursor: pointer;
+}
+
+#addStudentBtn:hover {
+    background: #15803d;
+}
+
+/* Student Form */
+
+#studentFormContainer {
+    padding: 20px;
+    margin-bottom: 25px;
+    background: #f8fafc;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+#studentForm {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+#studentForm input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#studentForm button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#studentForm button[type="submit"] {
+    background: #2563eb;
+    color: white;
+}
+
+#cancelBtn {
+    background: #ddd;
+}
+
+/* Table */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #1e293b;
+    color: white;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+tbody tr:hover {
+    background: #f1f5f9;
+}
+
+td button {
+    padding: 7px 12px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+td button:first-child {
+    background: #f59e0b;
+    color: white;
+}
+
+td button:last-child {
+    background: #dc2626;
+    color: white;
+}

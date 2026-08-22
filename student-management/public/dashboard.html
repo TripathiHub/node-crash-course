@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <div class="header">
+            <h1>Student Management System</h1>
+
+            <button id="logoutBtn">Logout</button>
+        </div>
+      <div id="studentFormContainer" style="display: none;">
+
+    <h2>Add Student</h2>
+
+    <form id="studentForm">
+
+        <input
+            type="number"
+            id="rollNo"
+            placeholder="Roll No"
+            required
+        >
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Student Name"
+            required
+        >
+
+        <input
+            type="text"
+            id="branch"
+            placeholder="Branch"
+            required
+        >
+
+        <input
+            type="number"
+            id="semester"
+            placeholder="Semester"
+            required
+        >
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Email"
+            required
+        >
+
+        <button type="submit">
+            Add Student
+        </button>
+
+        <button type="button" id="cancelBtn">
+            Cancel
+        </button>
+
+    </form>
+
+</div>
+        <div class="content">
+
+            <h2>Student Records</h2>
+
+            <button id="addStudentBtn">
+                + Add Student
+            </button>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Roll No</th>
+                        <th>Name</th>
+                        <th>Branch</th>
+                        <th>Semester</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody id="studentTableBody">
+                    <!-- Students will be inserted here -->
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
