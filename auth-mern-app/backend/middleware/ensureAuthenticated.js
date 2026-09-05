@@ -9,7 +9,7 @@ function ensureAuthenticated(req, res, next) {
             req.user = decoded;
             next();
         } catch {
-           return res.status(401).json({message: "Unauthorizes user jwt token expire"});
+           return res.status(401).json({message: "Unauthorized user or jwt token wrong"});
         }
 }
 module.exports = {

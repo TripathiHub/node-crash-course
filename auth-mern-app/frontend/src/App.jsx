@@ -3,7 +3,6 @@ function App() {
     <>
     <section id="center">
         <h1>Auth-App</h1>
-        <h2>Log-In</h2>
     </section>  
     </>
   )
