@@ -8,7 +8,10 @@ function signupValidation(req, res, next) {
     const { error } = schema.validate(req.body);
     if (error) {
         console.log(error);
-       return res.status(400).send(error);
+       return res.status(400).send({
+        success : false,
+        message : error.details[0].message
+       });
     }
     next();
 }

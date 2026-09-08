@@ -15,7 +15,7 @@ async function signup(req, res) {
             email
         });
         res.status(201).json({
-            message: "user created successfully",
+            message: "Signup successfully",
             success: true,
             user: {
                 id: user._id,
@@ -34,14 +34,14 @@ async function login(req, res) {
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(403).json({
-                message: "Auth failed email or password is wrong",
+                message: "Authentication failed email or password is wrong",
                 success: false
             })
         }
         const isPasswordEqual = await bcrypt.compare(password, user.password);
         if (!isPasswordEqual) {
             return res.status(403).json({
-                message: "Auth failed email or password is wrong",
+                message: "Authentication failed email or password is wrong",
                 success: false
             });
         }
@@ -51,7 +51,8 @@ async function login(req, res) {
             {expiresIn: "24h"}
         )
        res.status(200).json({
-        message : "login success",
+        message : "Login success",
+        success : true,
         jwtToken,
         email,
         name : user.name

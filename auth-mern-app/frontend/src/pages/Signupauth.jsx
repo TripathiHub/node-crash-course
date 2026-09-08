@@ -1,22 +1,43 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import {ToastContainer} from "react-toastify"
-function Signup() {
-  const[formInput,setFormInput] = useState({
-    name : "",
-    email : "",
-    password : ""
+import { Link, useNavigate} from "react-router-dom";
+import { toast } from "react-toastify"
+function Signupauth() {
+  const navigate = useNavigate();
+  const [formInput, setFormInput] = useState({
+    name: "",
+    email: "",
+    password: ""
   })
-  function handleChange(e){
-     const {name,value} = e.target;
-     setFormInput({
+  function handleChange(e) {
+    const { name, value } = e.target;
+    setFormInput({
       ...formInput,
-      [name] : value
-     });
+      [name]: value
+    });
   };
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log(formInput);
+    if (!formInput.email || !formInput.password || !formInput.name) {
+      toast.warning("All feilds are required");
+      return
+    }
+    const url = "http://localhost:9000/signup"
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify(formInput)
+    });
+    const result = await response.json();
+    if (result.success) {
+      toast.success(result.message);
+      setTimeout(()=>{
+          navigate("/login");
+      },1000)
+    } else {
+      toast.error(result.message);
+    }
   }
   return (
     <div className="auth-container">
@@ -68,10 +89,9 @@ function Signup() {
           Already have an account?
           <Link to="/login">Login</Link>
         </div>
-         <ToastContainer/>
       </div>
     </div>
   );
 }
 
-export default Signup;
+export default Signupauth;
