@@ -2,12 +2,14 @@ import { useEffect, useState } from "react"
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
-function Products() {
+function Products({ setIsAuthenticated }) {
   const navigate = useNavigate();
   const [loggedInUser, setLoggedInUser] = useState("");
   const [products, setProducts] = useState([]);
+  const [isloading, setIsLoading] = useState(true);
   async function fetchProducts() {
     try {
+      setIsLoading(true);
       const url = "http://localhost:9000/products";
       const headers = {
         headers: {
@@ -16,10 +18,11 @@ function Products() {
       }
       const response = await fetch(url, headers);
       const result = await response.json();
-      console.log(result);
       setProducts(result);
     } catch {
       toast.error("Get request failed");
+    } finally {
+      setIsLoading(false);
     }
   }
   useEffect(() => {
@@ -32,25 +35,51 @@ function Products() {
   function handleLogout() {
     localStorage.removeItem("jwtToken");
     localStorage.removeItem("loggedInUser");
+    setIsAuthenticated(false);
     toast.success(`${loggedInUser} logout successfully`);
     setTimeout(() => {
       navigate("/login");
     }, 500)
+  }
+  function handleAddToCart(product) {
+    toast.success(`${product.name} added to cart`);
   }
   return (
     <>
       <div className='product-page'>
         <div className='product-container'>
           <h1 className="user-heading">Welcome {loggedInUser}</h1>
-          {
-            products.map((product) => (
-              <div key={product.id}>
-                <h2>{product.name}</h2>
-                <h3>{product.price}</h3>
-                <button>Add to cart</button>
-              </div>
-            ))
-          }
+
+          {isloading ? (
+            <p className="loading-text">Loading products...</p>
+          ) : (
+            <div className="product-grid">
+              {products.map((product) => (
+                <div className="product-card" key={product.id}>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="product-img"
+                  />
+                  <div className="product-info">
+                    <h2 className="product-name">{product.name}</h2>
+                    {product.description && (
+                      <p className="product-desc">{product.description}</p>
+                    )}
+                    <h3 className="product-price">
+                      ₹{Number(product.price).toLocaleString()}
+                    </h3>
+                    <button
+                      className="add-to-cart-btn"
+                      onClick={() => handleAddToCart(product)}
+                    >
+                      Add to cart
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
       <div className='product-footer'>

@@ -2,6 +2,19 @@
    GLOBAL
 ========================= */
 
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+#root {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  display: block;
+  text-align: initial;
+}
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +26,10 @@ body {
   background: #f4f7fb;
   color: #1f2937;
 }
-
+#center {
+  width: 100%;
+  min-height: 100vh;
+}
 
 /* =========================
    SIGNUP + LOGIN CONTAINER
@@ -227,7 +243,7 @@ body {
 
 
 /* =========================
-   MOBILE RESPONSIVE
+   MOBILE RESPONSIVE (AUTH)
 ========================= */
 
 @media (max-width: 480px) {
@@ -243,6 +259,8 @@ body {
   }
 
 }
+
+
 /* =========================
    LOGIN FOOTER
 ========================= */
@@ -274,13 +292,15 @@ body {
 .login-footer a:hover {
   text-decoration: underline;
 }
+
+
 /* =========================
    PRODUCT PAGE
 ========================= */
 
 .product-page {
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - 70px); /* leaves room for the fixed footer */
   padding: 40px 20px;
   background: #f5f6f8;
   box-sizing: border-box;
@@ -310,12 +330,26 @@ body {
   font-size: 16px;
 }
 
+/* Welcome heading used directly inside product-container */
+.user-heading {
+  width: 100%;
+  grid-column: 1 / -1; /* span full grid width so it sits above the cards */
+
+  margin-bottom: 10px;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  color: #222;
+}
+
 
 /* =========================
-   PRODUCT CONTAINER
+   PRODUCT CONTAINER / GRID
 ========================= */
 
-.product-container {
+.product-container,
+.product-grid {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
@@ -332,6 +366,19 @@ body {
   box-sizing: border-box;
 }
 
+/* Loading state */
+.loading-text {
+  grid-column: 1 / -1;
+
+  text-align: center;
+
+  padding: 60px 0;
+
+  font-size: 16px;
+
+  color: #777;
+}
+
 
 /* =========================
    PRODUCT CARD
@@ -340,6 +387,9 @@ body {
 .product-card {
   width: 100%;
   min-width: 0;
+
+  display: flex;
+  flex-direction: column;
 
   background: white;
 
@@ -367,6 +417,7 @@ body {
    IMAGE
 ========================= */
 
+/* Wrapper version (if you keep a <div className="product-image">) */
 .product-image {
   width: 100%;
   height: 200px;
@@ -382,7 +433,6 @@ body {
   box-sizing: border-box;
 }
 
-
 .product-image img {
   width: 100%;
   height: 100%;
@@ -396,30 +446,62 @@ body {
   box-sizing: border-box;
 }
 
+/* Direct <img className="product-img"> version, as used in the React component */
+.product-img {
+  width: 100%;
+  height: 200px;
+
+  object-fit: contain;
+
+  display: block;
+
+  background: #f8f8f8;
+
+  padding: 15px;
+
+  box-sizing: border-box;
+}
+
 
 /* =========================
    PRODUCT INFO
 ========================= */
 
 .product-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
   padding: 20px;
   box-sizing: border-box;
 }
 
-
-.product-info h2 {
-  margin: 0 0 10px;
+.product-info h2,
+.product-name {
+  margin: 0 0 8px;
 
   font-size: 20px;
 
   color: #222;
 }
 
+.product-desc {
+  margin: 0 0 14px;
 
-.product-info h3 {
+  font-size: 14px;
+  line-height: 1.4;
+
+  color: #6b7280;
+
+  flex: 1; /* pushes price + button down so cards line up */
+}
+
+.product-info h3,
+.product-price {
   margin: 0 0 18px;
 
   font-size: 19px;
+  font-weight: 700;
 
   color: #007bff;
 }
@@ -429,7 +511,8 @@ body {
    BUTTON
 ========================= */
 
-.product-info button {
+.product-info button,
+.add-to-cart-btn {
   width: 100%;
 
   padding: 11px 15px;
@@ -449,9 +532,56 @@ body {
   transition: background 0.2s ease;
 }
 
-
-.product-info button:hover {
+.product-info button:hover,
+.add-to-cart-btn:hover {
   background: #0056b3;
+}
+
+.add-to-cart-btn:active {
+  transform: scale(0.98);
+}
+
+
+/* =========================
+   PRODUCT PAGE FOOTER (logout bar)
+========================= */
+
+.product-footer {
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  padding: 15px 30px;
+
+  background: #ffffff;
+
+  border-top: 1px solid #e5e7eb;
+
+  box-sizing: border-box;
+}
+
+.product-footer button {
+  padding: 10px 20px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #ef4444;
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.product-footer button:hover {
+  background: #dc2626;
 }
 
 
@@ -469,12 +599,18 @@ body {
     font-size: 27px;
   }
 
-  .product-container {
+  .user-heading {
+    font-size: 24px;
+  }
+
+  .product-container,
+  .product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 15px;
   }
 
-  .product-image {
+  .product-image,
+  .product-img {
     height: 170px;
   }
 
@@ -491,13 +627,20 @@ body {
     padding: 25px 12px;
   }
 
-  .product-container {
+  .product-container,
+  .product-grid {
     grid-template-columns: 1fr;
     gap: 18px;
   }
 
-  .product-image {
+  .product-image,
+  .product-img {
     height: 220px;
+  }
+
+  .product-footer {
+    padding: 12px 18px;
+    justify-content: center;
   }
 
 }

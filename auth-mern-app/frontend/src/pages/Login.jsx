@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
-function Login() {
+function Login({setIsAuthenticated}) {
   const navigate = useNavigate();
   const [logInput, setLogInput] = useState({
     email: "",
@@ -34,6 +34,7 @@ function Login() {
       toast.success(message);
       localStorage.setItem("jwtToken", jwtToken);
       localStorage.setItem("loggedInUser", name);
+      setIsAuthenticated(true);
       navigate("/products");
     } else {
       toast.error(message);
