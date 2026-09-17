@@ -66,6 +66,62 @@ function products(req, res) {
             description: "10 inch tablet, 64GB storage, Wi-Fi + LTE",
             image: "https://placehold.co/400x400/65a30d/ffffff?text=Tablet"
         },
+        {
+            id: 9,
+            name: "Gaming Console",
+            price: 42000,
+            category: "Electronics",
+            description: "Next-gen gaming console with 1TB SSD storage",
+            image: "https://placehold.co/400x400/1d4ed8/ffffff?text=Console"
+        },
+        {
+            id: 10,
+            name: "Wireless Mouse",
+            price: 900,
+            category: "Accessories",
+            description: "Ergonomic wireless mouse with adjustable DPI",
+            image: "https://placehold.co/400x400/059669/ffffff?text=Mouse"
+        },
+        {
+            id: 11,
+            name: "Mechanical Keyboard",
+            price: 3500,
+            category: "Accessories",
+            description: "RGB backlit mechanical keyboard with blue switches",
+            image: "https://placehold.co/400x400/9333ea/ffffff?text=Keyboard"
+        },
+        {
+            id: 12,
+            name: "Air Purifier",
+            price: 12000,
+            category: "Home Appliances",
+            description: "HEPA filter air purifier for rooms up to 400 sq ft",
+            image: "https://placehold.co/400x400/0d9488/ffffff?text=Purifier"
+        },
+        {
+            id: 13,
+            name: "Power Bank",
+            price: 1800,
+            category: "Accessories",
+            description: "20000mAh fast charging power bank with dual USB output",
+            image: "https://placehold.co/400x400/ca8a04/ffffff?text=PowerBank"
+        },
+        {
+            id: 14,
+            name: "Electric Kettle",
+            price: 1500,
+            category: "Home Appliances",
+            description: "1.5L stainless steel kettle with auto shut-off",
+            image: "https://placehold.co/400x400/be123c/ffffff?text=Kettle"
+        },
+        {
+            id: 15,
+            name: "Fitness Band",
+            price: 2200,
+            category: "Wearables",
+            description: "Slim fitness band with sleep tracking and SpO2 monitor",
+            image: "https://placehold.co/400x400/4338ca/ffffff?text=FitBand"
+        },
     ]);
 }
 

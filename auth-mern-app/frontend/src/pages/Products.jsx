@@ -7,6 +7,7 @@ function Products({ setIsAuthenticated }) {
   const [loggedInUser, setLoggedInUser] = useState("");
   const [products, setProducts] = useState([]);
   const [isloading, setIsLoading] = useState(true);
+  const [cart, setCart] = useState([]);
   async function fetchProducts() {
     try {
       setIsLoading(true);
@@ -43,6 +44,7 @@ function Products({ setIsAuthenticated }) {
   }
   function handleAddToCart(product) {
     toast.success(`${product.name} added to cart`);
+    setCart([...cart, product]);
   }
   return (
     <>
@@ -82,7 +84,22 @@ function Products({ setIsAuthenticated }) {
           )}
         </div>
       </div>
+      <div className="cart-products">
+        {cart.map((product) => (
+          <ul key={product.id} className="cart-table">
+            <li className="cart-product-name">{`${product.name}`}</li>
+            <li className="cart-product-price">{`${product.price}`}</li>
+          </ul>
+        ))
+        }
+      </div>
       <div className='product-footer'>
+        <div className="footer-cart-summary">
+          <span className="cart-count">🛒 {cart.length} item{cart.length !== 1 ? "s" : ""}</span>
+          <span className="cart-total">
+            ₹{cart.reduce((sum, p) => sum + Number(p.price), 0).toLocaleString()}
+          </span>
+        </div>
         <button onClick={handleLogout}>Logout</button>
       </div>
     </>
